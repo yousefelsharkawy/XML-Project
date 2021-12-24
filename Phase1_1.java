@@ -650,38 +650,3 @@ public class Phase1_1 {
     }
 
 }
-
-LZW DECODING
-Initialize table
-with single
-character strings OLD=
-first input
-code output
-translation of
-OLD
-WHILE
-not end
-of input
-stream
-    NEW = next input
-code IF
-NEW is
-not in
-the string
-table S =
-translation of
-OLD
-            S = S + C
-    ELSE S=
-translation of
-NEW
-    output
-S C =
-first character
-of S OLD+
-C to
-the string
-table
-    OLD = NEW
-END
-WHILE

@@ -9,9 +9,9 @@ For more complex and bigger relationships. Many XML files may be used, and the f
 ### 1. Reading and Parcing
 Through the GUI, the user is able to select the path of the XML file from his hard disk. Once he clicks the file, it will appear in the text area
 
-What happens under the hood?  The once the file path is chosen. It will be stored into a **Buffered Reader** object, which is passed immediately to [fileReader](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L68) function, which converts the buffered reader into an **ArrayList** of strings, with each element corresponds to a line in the XML file.
+What happens under the hood?  The once the file path is chosen. It will be stored into a **Buffered Reader** object, which is passed immediately to [fileReader](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L67) function, which converts the buffered reader into an **ArrayList** of strings, with each element corresponds to a line in the XML file.
 
-In order to increase the performance of the operations and simplify the next functions. we stored the contents of the **ArrayList** into a single String, with no spaces, tabs nor new lines using [xml_parser](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L81).
+In order to increase the performance of the operations and simplify the next functions. we stored the contents of the **ArrayList** into a single String, with no spaces, tabs nor new lines using [xml_parser](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L80).
 
 ![Reding and Parsing the file](https://github.com/0ssamaak0/XML-Project/blob/main/Reding_and_Parsing_the_file.png)
 
@@ -101,17 +101,17 @@ END WHILE
 ## Complexity Analysis
 Where n is the number of lines in the XML file, and m is the number of letters per line.
 
-[fileReader](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L68): T=O(n)
+[fileReader](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L67): T=O(n)
 
-[xml_parser](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L81): T=O(nm)
+[xml_parser](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L80): T=O(nm)
 
-[xml_validator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L133):T=O(nm)
+[xml_validator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#/132):T=O(nm)
 
-[tree_creator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L269): T=O(n2)   
+[tree_creator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L266): T=O(n2)   
 
-[formatting_maker](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L391): T=O(nodes) (preorder traversal)
+[formatting_maker](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L388): T=O(nodes) (preorder traversal)
 
-[JSONIfy]((https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L445)): T=O(nodes) (preorder traversal)
+[JSONIfy]((https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L442)): T=O(nodes) (preorder traversal)
 
 compress(String XML_file): T=O(nm)
 
