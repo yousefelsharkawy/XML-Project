@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Stack;
 import javafx.scene.control.TextField;
+
 /**
  *
  * @author yousef
@@ -43,17 +44,15 @@ public class Phase1_1 {
 
     // Stack for validation
     Stack<String> stack = new Stack<String>();
-    
-    
+
     String allerrors = "";
-    
 
     // Constructor
     public Phase1_1(BufferedReader xml_file) {
         this.xml_file = xml_file;
         fileReader();
         xml_parser();
-        
+
         // Part1
         xml_validator();
         // ....
@@ -133,7 +132,6 @@ public class Phase1_1 {
     public String xml_validator() {
         // Checking if there's (any) error
         boolean error = false;
-        
 
         // iterating the ArrayList of the lines by index (by index to indicate the lines
         // with errors)
@@ -213,7 +211,7 @@ public class Phase1_1 {
                                     errors.add("line: " + lineindx + ": stack is empty! the tag " + tag
                                             + " has no opening tag!");
                                     error = true;
-                                    
+
                                 }
                                 // Checking if the stack has the correspoding opening tag : no error
                                 else if (stack.peek().compareTo(tag) == 0) {
@@ -250,13 +248,12 @@ public class Phase1_1 {
         }
         // If there're any errors: print them
         else if (error) {
-            
+
             for (String errorinerrors : errors) {
                 System.out.println(errorinerrors);
                 allerrors += errorinerrors;
             }
-            
-            
+
         }
         // If not
         else {
@@ -653,3 +650,38 @@ public class Phase1_1 {
     }
 
 }
+
+LZW DECODING
+Initialize table
+with single
+character strings OLD=
+first input
+code output
+translation of
+OLD
+WHILE
+not end
+of input
+stream
+    NEW = next input
+code IF
+NEW is
+not in
+the string
+table S =
+translation of
+OLD
+            S = S + C
+    ELSE S=
+translation of
+NEW
+    output
+S C =
+first character
+of S OLD+
+C to
+the string
+table
+    OLD = NEW
+END
+WHILE
