@@ -1,5 +1,5 @@
 # XML-Project
-```C
+```python
 stack.push("CSE CSE331s | Data Structures and Algorithms")
 stack.push("Final Project")
 stack.push("Phase 1")
