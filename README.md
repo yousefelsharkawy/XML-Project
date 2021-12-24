@@ -105,7 +105,7 @@ Where n is the number of lines in the XML file, and m is the number of letters p
 
 [xml_parser](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L80): T=O(nm)
 
-[xml_validator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#/132):T=O(nm)
+[xml_validator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L132):T=O(nm)
 
 [tree_creator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L266): T=O(n2)   
 
