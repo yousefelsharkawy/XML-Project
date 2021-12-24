@@ -7,5 +7,5 @@ For more complex and bigger relationships. Many XML files may be used, and the f
 
 ## Implementation Details
 ### Reading and Parcing
-![Reding and Parsing the file](Reding_and_Parsing_the_file "Reding and Parsing the file")
+![Reding and Parsing the file](https://github.com/0ssamaak0/XML-Project/blob/main/Reding_and_Parsing_the_file.png)
 
