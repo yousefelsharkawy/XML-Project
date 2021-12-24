@@ -111,7 +111,7 @@ Where n is the number of lines in the XML file, and m is the number of letters p
 
 [formatting_maker](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L388): T=O(nodes) (preorder traversal)
 
-[JSONIfy]((https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L442)): T=O(nodes) (preorder traversal)
+[JSONIfy](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L442): T=O(nodes) (preorder traversal)
 
 compress(String XML_file): T=O(nm)
 
