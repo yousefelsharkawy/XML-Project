@@ -1,7 +1,7 @@
 # XML-Project
 This is Project is the Semester Project for (Data Structures and Algorithms | CSE331s)
 ## Background
-In the first phase in this project, we are going to develop a tool that allows the user to check if the XML file is valid, and if it is. He will be able to format it to increase the readability and to be more informative. Furthermore, many languages do not have XML parsers as perfect as JSON parsers, so the user is able to convert the XML file to a JSON file.
+In the first phase of this project, we are going to develop a tool that allows the user to check if the XML file is valid, and if it is. He will be able to format it to increase the readability and to be more informative. Furthermore, many languages do not have XML parsers as perfect as JSON parsers, so the user is able to convert the XML file to a JSON file.
 
 For more complex and bigger relationships. Many XML files may be used, and the files size may increase too, which consumes data and time. So, we have provided the user with the ability to compress the file and reduce its size.
 
@@ -9,9 +9,9 @@ For more complex and bigger relationships. Many XML files may be used, and the f
 ### 1. Reading and Parcing
 Through the GUI, the user is able to select the path of the XML file from his hard disk. Once he clicks the file, it will appear in the text area
 
-What happens under the hood?  The once the file path is chosen. It will be stored into a **Buffered Reader** object, which is passed immediately to **fileReader()** function, which converts the buffered reader into an **Arra    yList** of strings, with each element corresponds to a line in the XML file.
+What happens under the hood?  The once the file path is chosen. It will be stored into a **Buffered Reader** object, which is passed immediately to [fileReader](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L68) function, which converts the buffered reader into an **ArrayList** of strings, with each element corresponds to a line in the XML file.
 
-In order to increase the performance of the operations and simplify the next functions. we stored the contents of the **ArrayList** into a single String, with no spaces, tabs nor new lines using **xml_parser()**.
+In order to increase the performance of the operations and simplify the next functions. we stored the contents of the **ArrayList** into a single String, with no spaces, tabs nor new lines using [xml_parser](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L81).
 
 ![Reding and Parsing the file](https://github.com/0ssamaak0/XML-Project/blob/main/Reding_and_Parsing_the_file.png)
 
@@ -44,14 +44,80 @@ Converting the XML file to JSON is somehow easy process in most cases. We replac
 
 This led us to start modifying or Formatting traversal function. And reusing it with many details and parameters. In this function we really started using the Tree data members which may seemed to be trivial in the first look.
 
-```pseudocode
 
-```
-```{r, tidy=FALSE, eval=FALSE, highlight=FALSE }
-
-pseudocode
-
+```Java
+// Pseudocode to check the 3 cases for each node
+if this node has siblings with similar names:
+    if this is the first child of the parent:
+        print(tag + [:) // e.g., "user:["
+    else:
+    "don't print the tag name"
+else:
+    print(tag + {}:) // e.g., "user:{"
 ```
 
 and for every node, we check also if it’s a leaf or not, to determine whether we just print it with its value or open a new curly bracket.
 Lastly, we checked if this node is the last sibling. To avoid adding the comma “,” after it.
+
+### 6. Compression
+The idea of the **Compression** algorithm is the following: as the input data is being processed, a dictionary keeps a correspondence between the longest encountered words and a list of code values. The words are replaced by their corresponding codes and so the input file is compressed. Therefore, the efficiency of the algorithm increases as the number of long, repetitive words in the input data increases
+
+```Java
+//  LZW ENCODING PSEUDOCODE
+Initialize table with single character strings
+P = first input character
+WHILE not end of input stream
+    C = next input character
+    IF P + C is in the string table
+        P = P + C
+    ELSE
+        output the code for P
+    add P + C to the string table
+    P = C
+    END WHILE
+output code for P 
+```
+
+Considering the **Decompression** process The LZW decompressor creates the same string table during decompression. It starts with the first 256 table entries initialized to single characters. The string table is updated for each character in the input stream, except the first one. Decoding is achieved by reading codes and translating them through the code table being built.
+
+```Java
+// LZW DECODING PSEUDOCODE
+Initialize table with single character strings
+OLD = first input code
+output translation of OLD
+WHILE not end of input stream
+    NEW = next input code
+    IF NEW is not in the string table
+            S = translation of OLD
+            S = S + C
+    ELSE
+            S = translation of NEW
+    output S
+    C = first character of S
+    OLD + C to the string table
+    OLD = NEW
+END WHILE
+```
+## Complexity Analysis
+Where n is the number of lines in the XML file, and m is the number of letters per line.
+
+[fileReader](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L68): T=O(n)
+
+[xml_parser](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L81): T=O(nm)
+
+[xml_validator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L133):T=O(nm)
+
+[tree_creator](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L269): T=O(n2)   
+
+[formatting_maker](https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L391): T=O(nodes) (preorder traversal)
+
+[JSONIfy]((https://github.com/0ssamaak0/XML-Project/blob/main/Phase1_1.java#L445)): T=O(nodes) (preorder traversal)
+
+compress(String XML_file): T=O(nm)
+
+decompress(String input): T=O(nm)
+
+## Known Issues
+1. Adding an attribute to a tag corrupts the validation process. This can be solved by adding a condition to completely ignore the attribution and push only the tag name to the stack.
+
+2. Adding a comment corrupts the converting to JSON process, since the comment is considered as a node. So, it adds 1 to the number of children. This can be solved by checking if there’s a comment, we can add an integer that indicates the number of comments under a given node.
